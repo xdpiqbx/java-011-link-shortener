@@ -14,6 +14,8 @@ public class CommandService implements Command{
     commands = new HashMap<>();
     commands.put("GET /", new IndexCommand());
     commands.put("GET /list", new ListCommand());
+    commands.put("GET /link/create", new GetCreateLinkCommand());
+    commands.put("POST /link/create", new PostCreateLinkCommand());
   }
   @Override
   public void process(HttpServletRequest req, HttpServletResponse resp, TemplateEngine engine) throws IOException{

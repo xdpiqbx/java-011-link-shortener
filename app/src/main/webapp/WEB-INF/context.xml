@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<Context docBase="${catalina.base}\webapps\lnkshort" path="" reloadable="true"/>

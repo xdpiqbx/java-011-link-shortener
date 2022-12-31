@@ -1,6 +1,5 @@
 package cw.lnkshort.web.command;
 
-import cw.lnkshort.link.Link;
 import cw.lnkshort.link.LinkService;
 import cw.lnkshort.serviceprovider.ServiceProvider;
 import org.thymeleaf.TemplateEngine;
@@ -11,19 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
 
-public class ListCommand implements Command {
+public class GetCreateLinkCommand implements Command {
     @Override
     public void process(HttpServletRequest req, HttpServletResponse resp, TemplateEngine engine) throws IOException {
         resp.setContentType("text/html; charset=utf-8");
 
-        LinkService linkService = ServiceProvider.get(LinkService.class);
-
         Context context = new Context(
                 req.getLocale(),
-                Collections.singletonMap("links", linkService.listAll())
+                Collections.emptyMap()
         );
 
-        engine.process("list", context, resp.getWriter());
+        engine.process("create-link", context, resp.getWriter());
         resp.getWriter().close();
     }
 }

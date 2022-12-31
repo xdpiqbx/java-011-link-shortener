@@ -58,3 +58,7 @@ tasks.named('test') {
 compileJava {
     options.encoding = 'UTF-8'
 }
+
+war {
+    archiveName = 'lnkshort.war'
+}

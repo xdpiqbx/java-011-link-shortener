@@ -10,7 +10,10 @@
   <body>
     <div class="container mt-3">
       <div class="card">
-        <div class="card-header" th:text="'Links: ' + ${links.size()}"></div>
+        <div class="card-header">
+          <span th:text="'Links: ' + ${links.size()}"></span>
+          <a href="/link/create" class="btn btn-sm btn-outline-primary">Crete link</a>
+        </div>
         <div class="card-body">
           <table class="table">
             <tr>
