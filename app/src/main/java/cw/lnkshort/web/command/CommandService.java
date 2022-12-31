@@ -13,6 +13,7 @@ public class CommandService implements Command{
   public CommandService(){
     commands = new HashMap<>();
     commands.put("GET /", new IndexCommand());
+    commands.put("GET /list", new ListCommand());
   }
   @Override
   public void process(HttpServletRequest req, HttpServletResponse resp, TemplateEngine engine) throws IOException{

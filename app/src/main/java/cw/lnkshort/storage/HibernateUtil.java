@@ -1,5 +1,6 @@
 package cw.lnkshort.storage;
 
+import cw.lnkshort.link.Link;
 import lombok.Getter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,14 +10,17 @@ import java.util.*;
 
 public class HibernateUtil {
   private static final HibernateUtil INSTANCE;
+  @Getter
+  private final SessionFactory sessionFactory;
+
   static {
     INSTANCE = new HibernateUtil();
   }
-  @Getter
-  private final SessionFactory sessionFactory;
+
   private HibernateUtil(){
     sessionFactory = new Configuration()
       .setProperty("hibernate.connection.url", StorageConstants.CONNECTION_URL)
+      .addAnnotatedClass(Link.class)
       .buildSessionFactory();
   }
 
