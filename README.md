@@ -11,3 +11,6 @@ Tomcat `server.xml`
     <Context docBase="${catalina.base}\webapps\lnkshort" path="" reloadable="true"/>
 </Host>
 ```
+
+[All that is used here](https://github.com/xdpiqbx/java-011-link-shortener/blob/main/link-shortener_11_class_work.drawio.pdf)
+
