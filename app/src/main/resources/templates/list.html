@@ -11,8 +11,26 @@
     <div class="container mt-3">
       <div class="card">
         <div class="card-header">
-          <span th:text="'Links: ' + ${links.size()}"></span>
-          <a href="/link/create" class="btn btn-sm btn-outline-primary">Crete link</a>
+          <table class="table">
+            <tr>
+              <th>
+                <a href="/link/create" class="btn btn-sm btn-outline-primary">Crete link</a>
+              </th>
+              <th>
+                <div class="input-group mb-3">
+                  <form action="/list" method="GET" id="form">
+                    <input th:value="${query}" type="text" class="form-control form-control-sm" name="query" placeholder="Search ...">
+                  </form>
+                  <div class="input-group-append">
+                    <button class="btn btn-sm btn-outline-secondary" type="submit" form="form">Search</button>
+                  </div>
+                </div>
+              </th>
+              <th>
+                <span th:text="'Links: ' + ${links.size()}"></span>
+              </th>
+            </tr>
+          </table>
         </div>
         <div class="card-body">
           <table class="table">
@@ -20,11 +38,20 @@
               <th>Short link</th>
               <th>Full link</th>
               <th>Open count</th>
+              <th>Action</th>
             </tr>
             <tr th:each="link: ${links}">
-              <td th:text="${link.shortLink}"></td>
+              <td>
+                <a th:text="${link.shortLink}"
+                   th:href="'/' + ${link.shortLink}" target="_blank"></a>
+              </td>
               <td th:text="${link.link}"></td>
-              <td th:text="${link.openCount}"></td>
+              <td>
+                <span th:text="${link.openCount}"></span>
+              </td>
+              <td>
+                <a th:href="'/link/delete?shortlink=' + ${link.shortLink}" class="btn btn-sm btn-outline-danger">Remove</a>
+              </td>
             </tr>
           </table>
         </div>

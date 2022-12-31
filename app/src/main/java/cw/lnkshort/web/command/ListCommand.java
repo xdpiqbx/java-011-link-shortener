@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ListCommand implements Command {
     @Override
@@ -17,11 +20,19 @@ public class ListCommand implements Command {
         resp.setContentType("text/html; charset=utf-8");
 
         LinkService linkService = ServiceProvider.get(LinkService.class);
+        List<Link> links = null;
 
-        Context context = new Context(
-                req.getLocale(),
-                Collections.singletonMap("links", linkService.listAll())
-        );
+        if(req.getParameterMap().containsKey("query")){
+            links = linkService.search(req.getParameter("query"));
+        }else{
+            links = linkService.listAll();
+        }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("links", links);
+        params.put("query", req.getParameter("query"));
+
+        Context context = new Context(req.getLocale(), params);
 
         engine.process("list", context, resp.getWriter());
         resp.getWriter().close();

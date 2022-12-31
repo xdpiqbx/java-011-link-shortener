@@ -18,7 +18,7 @@ public class LinkServiceHibernate implements LinkService{
   public void save(Link link) {
     try(Session session = openSession()){
       Transaction transaction = session.beginTransaction();
-      session.persist(link);
+      session.merge(link);
       transaction.commit();
     }
   }

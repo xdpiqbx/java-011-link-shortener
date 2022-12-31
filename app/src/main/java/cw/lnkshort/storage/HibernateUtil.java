@@ -30,12 +30,4 @@ public class HibernateUtil {
   public void close(){
     sessionFactory.close();
   }
-
-  public static void main(String[] args) {
-//    DatabaseInitService.initDb();
-    HibernateUtil util = HibernateUtil.getInstance();
-//    Session session = util.getSessionFactory().openSession();
-//
-//    session.close();
-  }
 }

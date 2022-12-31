@@ -18,5 +18,5 @@ public class Link {
     private String link;
 
     @Column(name = "open_count")
-    private String openCount;
+    private int openCount;
 }
